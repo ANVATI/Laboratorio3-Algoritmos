@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Nivel 1.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Derrota.unity
+    guid: 9659c2a8efda3f947b75d85cd3e6e195
+  - enabled: 1
+    path: "Assets/Scenes/Men\xFA.unity"
+    guid: 3c0024cc302889d488e16a5f142b52ff
+  - enabled: 1
+    path: Assets/Scenes/Nivel 2.unity
+    guid: 6ab110e76d1abd648b2c3a1950617bc6
+  - enabled: 1
+    path: Assets/Scenes/Victoria.unity
+    guid: 00572466969ef994a9ba011825628d55
+  m_configObjects: {}
