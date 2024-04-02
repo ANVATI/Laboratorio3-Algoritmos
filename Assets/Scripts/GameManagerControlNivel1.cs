@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine.Events;
 using System;
 
+
 public class GameManagerControlNivel1 : MonoBehaviour
 {
     public TextMeshProUGUI Textcontador;

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using System;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -29,14 +30,14 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        Inputs();
+        //Inputs();
         CheckGround();
     }
     private void FixedUpdate()
     {
         myRB2D.velocity = new Vector2(direction * speed, myRB2D.velocity.y);
     }
-
+    /*
     void Inputs()
     {
         direction = Input.GetAxisRaw("Horizontal");
@@ -51,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+    */
     void CheckGround()
     {
         Debug.DrawLine(transform.position, transform.position + Vector3.down, Color.red);
@@ -63,6 +65,26 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             grounded = false;
+        }
+    }
+
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        direction = context.ReadValue<float>();
+    }
+    public void OnJump(InputAction.CallbackContext ctx)
+    {
+        if (ctx.performed)
+        {
+            if (grounded || DJump)
+            {
+                if (!grounded)
+                {
+                    DJump = false;
+                }
+
+                myRB2D.velocity = new Vector2(myRB2D.velocity.x, Jforce);
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
@@ -161,20 +183,47 @@ public class PlayerMovement : MonoBehaviour
             bloquear.SetActive(false);
         }
     }
+    public void OnChangeColorRed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _changesprite.color = Color.red;
+            color = 1;
+        }
+    }
+
+    public void OnChangeColorBlue(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _changesprite.color = Color.blue;
+            color = 3;
+        }
+    }
+
+    public void OnChangeColorGreen(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            _changesprite.color = Color.green;
+            color = 2;
+        }
+    }
+    /*
     public void rojo()
     {
         _changesprite.color = Color.red;
         color = 1;
     }
-    public void verde()
+    public void verde(InputAction.CallbackContext ctx)
     {
         _changesprite.color = Color.green;
         color = 2;
     }
-    public void blue()
+    public void blue(InputAction.CallbackContext ctx)
     {
         _changesprite.color = Color.blue;
         color = 3;
     }
-
+    */
 }
